@@ -1,0 +1,1741 @@
+// ══════════════════════════════════════════════════════
+// ENTRE DEUX VERRES — style.scss
+// ══════════════════════════════════════════════════════
+
+
+// ─────────────────────────────────────────────────────
+// 1. SCSS VARIABLES
+// ─────────────────────────────────────────────────────
+
+// Colors
+$primary:        #1f1f1f;
+$accent:         #cc4c53;
+$yellow:         #fbf85d;
+$surface:        #382416;
+$text-primary:   #f4f4f4;
+$text-secondary: #c9c9c9;
+$text-muted:     rgba(255, 237, 215, 0.5);
+$pure-white:     #ffffff;
+$pure-black:     #000000;
+$green-accent:   #445231;
+$success:        #7ab05a;
+
+// Typography
+$font-display: 'Literata', Georgia, serif;
+$font-body:    'Literata', Georgia, serif;
+$font-mono:    'DM Mono', 'Courier New', monospace;
+
+// Spacing
+$pad-x:  3.125vw;
+$gap:     24px;
+$r-btn:   3em;
+$r-card:  0.75rem;
+
+// Breakpoints
+$bp-lg:  1024px;
+$bp-md:  768px;
+$bp-sm:  480px;
+
+// Max content width
+$max-w:  1300px;
+
+
+// ─────────────────────────────────────────────────────
+// 2. MIXINS
+// ─────────────────────────────────────────────────────
+
+// Dashline horizontal gradient
+@mixin dashline-h($opacity: 0.6) {
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    $text-muted 0px,
+    $text-muted 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  width: 100%;
+  opacity: $opacity;
+}
+
+// Dashline vertical gradient
+@mixin dashline-v($opacity: 0.4) {
+  width: 1px;
+  background: repeating-linear-gradient(
+    180deg,
+    $text-muted 0px,
+    $text-muted 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: $opacity;
+}
+
+// Dashed border shorthand
+@mixin dashed-border($color: $text-muted, $side: null) {
+  @if $side {
+    border-#{$side}: 1px dashed $color;
+  } @else {
+    border: 1px dashed $color;
+  }
+}
+
+// Orange glow (accent radiant effect)
+@mixin glow-primary {
+  box-shadow: 0 0 18px 2px $accent, inset 0 0 14px 0 rgba(220, 80, 0, 0.15);
+}
+@mixin glow-ghost {
+  box-shadow: 0 0 12px 1px rgba(220, 80, 0, 0.2);
+}
+
+// Mono label style
+@mixin mono-label($size: 0.65rem, $spacing: 0.15em) {
+  font-family: $font-mono;
+  font-size: $size;
+  letter-spacing: $spacing;
+  text-transform: uppercase;
+}
+
+// Flipper inner spans
+@mixin flipper-spans($height: 2.6em) {
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $height;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+
+  &:hover span {
+    transform: translateY(-100%);
+  }
+}
+
+// Responsive breakpoint helpers
+@mixin lg { @media (max-width: $bp-lg) { @content; } }
+@mixin md { @media (max-width: $bp-md) { @content; } }
+@mixin sm { @media (max-width: $bp-sm) { @content; } }
+@mixin touch { @media (pointer: coarse) { @content; } }
+
+
+// ─────────────────────────────────────────────────────
+// 3. CSS CUSTOM PROPERTIES (runtime tokens for JS)
+// ─────────────────────────────────────────────────────
+
+:root {
+  --primary:        #{$primary};
+  --accent:         #{$accent};
+  --yellow:         #{$yellow};
+  --surface:        #{$surface};
+  --text-primary:   #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-muted:     #{$text-muted};
+  --pure-white:     #{$pure-white};
+  --pure-black:     #{$pure-black};
+  --green-accent:   #{$green-accent};
+
+  --font-display:   #{$font-display};
+  --font-body:      #{$font-body};
+  --font-mono:      #{$font-mono};
+
+  --pad-x:  #{$pad-x};
+  --gap:    #{$gap};
+  --r-btn:  #{$r-btn};
+  --r-card: #{$r-card};
+
+  --dashline: repeating-linear-gradient(
+    90deg,
+    #{$text-muted} 0px,
+    #{$text-muted} 6px,
+    transparent 6px,
+    transparent 12px
+  );
+
+  --dashline-v: repeating-linear-gradient(
+    180deg,
+    #{$text-muted} 0px,
+    #{$text-muted} 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+
+// ─────────────────────────────────────────────────────
+// 4. CUSTOM FONTS
+// ─────────────────────────────────────────────────────
+
+@font-face {
+  font-family: 'DM Mono';
+  src: url('https://fonts.gstatic.com/s/dmmono/v14/aFTR7PB1QTsUX8KYvrumzoEr.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 5. RESET
+// ─────────────────────────────────────────────────────
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: $primary;
+  color: $text-primary;
+  font-family: $font-body;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  background: #09090b;
+  border: 1.58px solid #52525b;
+  border-radius: 0.75rem;
+  padding: 0.75em 1.25em;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 500;
+  color: #e2e8f0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-0.335rem);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 6. CURSOR
+// ─────────────────────────────────────────────────────
+
+.cursor {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid $text-muted;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, border-color 0.2s, width 0.2s, height 0.2s;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: $accent;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+}
+
+body:has(a:hover),
+body:has(button:hover) {
+  .cursor {
+    width: 56px;
+    height: 56px;
+    border-color: $accent;
+  }
+}
+
+@include touch {
+  .cursor,
+  .cursor-dot {
+    display: none;
+  }
+
+  body   { cursor: auto; }
+  button { cursor: pointer; }
+  a      { cursor: pointer; }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 7. UTILITIES
+// ─────────────────────────────────────────────────────
+
+.mono {
+  font-family: $font-mono;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+}
+
+.accent-text { color: $accent; }
+.text-muted  { color: $text-muted; }
+.mt-sm       { margin-top: 0.75rem; }
+.mt-md       { margin-top: 1.5rem; }
+.mb-sm       { margin-bottom: 0.75rem; }
+.mb-md       { margin-bottom: 1.5rem; }
+
+
+// ─────────────────────────────────────────────────────
+// 8. DASHLINES
+// ─────────────────────────────────────────────────────
+
+.dashline {
+  @include dashline-h(0.6);
+
+  &--top    { margin-bottom: 4rem; }
+  &--bottom { margin-top: 4rem; }
+  &--h      { @include dashline-h(0.4); }
+}
+
+.dashline-v {
+  @include dashline-v(0.4);
+}
+
+
+// ─────────────────────────────────────────────────────
+// 9. BUTTONS
+// ─────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75em 2em;
+  border-radius: $r-btn;
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &-primary {
+    background: $text-primary;
+    color: $primary;
+    box-shadow: 0 0 0 0 $accent;
+
+    &:hover {
+      @include glow-primary;
+      background: $pure-white;
+    }
+  }
+
+  &-ghost {
+    background: transparent;
+    color: $text-primary;
+    @include dashed-border($text-primary);
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+      @include glow-ghost;
+    }
+  }
+
+  &-sm {
+    padding: 0.5em 1.2em;
+    font-size: 0.72rem;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 10. SCROLL INDICATOR (right-edge rotated)
+// ─────────────────────────────────────────────────────
+
+.scroll-indicator {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg) translateX(50%);
+  transform-origin: right center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.scroll-label {
+  @include mono-label(0.65rem, 0.15em);
+  color: $text-muted;
+  white-space: nowrap;
+}
+
+.scroll-progress {
+  width: 60px;
+  height: 1px;
+  background: $text-muted;
+
+  &-bar {
+    height: 100%;
+    background: $accent;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 11. NAVIGATION
+// ─────────────────────────────────────────────────────
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  padding: 1.25rem $pad-x;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s ease, backdrop-filter 0.3s;
+
+  &.scrolled {
+    background: $primary;
+    backdrop-filter: blur(12px);
+    @include dashed-border($text-muted, bottom);
+  }
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-right: auto;
+
+  &-text {
+    font-family: $font-display;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: $text-primary;
+  }
+
+  &-sub {
+    font-size: 0.65rem;
+    color: $text-muted;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $text-secondary;
+  padding: 0.5em 0.9em;
+  border-radius: $r-btn;
+  transition: color 0.2s;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 2.2em;
+  gap: 0;
+
+  span {
+    display: flex;
+    align-items: center;
+    height: 2.2em;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.nav-cta {
+  margin-left: 0.5rem;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  margin-left: auto;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: $text-primary;
+    transition: all 0.3s;
+  }
+
+  &.open {
+    span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+  }
+}
+
+.nav-mobile {
+  display: none;
+  padding: 1rem 0;
+  @include dashed-border($text-muted, top);
+  margin-top: 1rem;
+
+  &.open {
+    display: block;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.nav-mobile-link {
+  @include mono-label(0.8rem, 0.1em);
+  padding: 0.6em 0;
+  color: $text-secondary;
+  display: block;
+  border-bottom: 1px dashed transparent;
+  transition: all 0.2s;
+
+  &:hover,
+  &.accent {
+    color: $accent;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 12. HERO
+// ─────────────────────────────────────────────────────
+
+.hero {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 8rem $pad-x 6rem;
+  overflow: hidden;
+
+  &-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient($text-muted 1px, transparent 1px),
+      linear-gradient(90deg, $text-muted 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  &-content {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  &-eyebrow {
+    color: $text-secondary;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+    text-align: center;
+  }
+
+  &-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-title {
+    font-family: $font-display;
+    font-size: clamp(3.5rem, 10vw, 10rem);
+    line-height: 1;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    align-items: baseline;
+    gap: 0.3em;
+
+    &:has(#word-deux:hover) {
+      #word-entre {
+        transform: translateX(-2rem);
+      }
+
+      #word-verres {
+        transform: translateX(2rem);
+      }
+    }
+
+    &-line {
+      display: inline-block;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      &--trigger {
+        cursor: default;
+        color: $accent;
+        font-style: normal;
+      }
+
+      &:nth-child(2) { animation-delay: 0.5s; color: $pure-white; font-style: normal; }
+    }
+  }
+
+
+  &-images {
+    position: absolute;
+    top: 54%;          
+    left: 41%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 33rem;
+    pointer-events: none;
+    z-index: -1;
+
+    &.revealed {
+      pointer-events: auto;
+  
+      .hero-img {
+        opacity: 1;
+        transform: translateX(0);
+  
+        &--right {
+          transition-delay: 0.08s;
+        }
+      }
+    }
+  }
+
+  &-img {
+    width: clamp(140px, 18vw, 280px);
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    opacity: 0;
+    transition:
+      transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity   0.6s ease;
+
+    &--left {
+      transform: translateX(-6rem);
+    }
+
+    &--right {
+      transform: translateX(6rem);
+    }
+  }
+
+  &-tagline {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: $text-secondary;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  &-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+    justify-content: center;
+  }
+
+  &-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: $text-muted;
+    font-size: 0.72rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.15s forwards;
+    justify-content: center;
+
+    &-sep {
+      color: $accent;
+    }
+  }
+
+  &-decoration {
+    position: absolute;
+    right: -5vw;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  &-circle {
+    width: clamp(280px, 40vw, 550px);
+    height: clamp(280px, 40vw, 550px);
+    border-radius: 50%;
+    @include dashed-border($accent);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1.15;
+    animation: rotateSlow 40s linear infinite;
+
+    &--2 {
+      width: clamp(200px, 28vw, 380px);
+      height: clamp(200px, 28vw, 380px);
+      border-color: $yellow;
+      opacity: 1;
+      animation-direction: reverse;
+      animation-duration: 28s;
+    }
+  }
+
+  &-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: $pad-x;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.4s forwards;
+
+    span {
+      font-size: 0.6rem;
+      color: $text-muted;
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, $text-muted, transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 13. TICKER BAND
+// ─────────────────────────────────────────────────────
+
+.ticker-band {
+  overflow: hidden;
+  background: $accent;
+  padding: 0.7rem 0;
+  border-top: 1px solid rgba(255, 237, 215, 0.1);
+  border-bottom: 1px solid rgba(255, 237, 215, 0.1);
+}
+
+.ticker-track {
+  display: flex;
+  gap: 2rem;
+  white-space: nowrap;
+  animation: ticker 25s linear infinite;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $pure-white;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.ticker-dot {
+  color: $pure-white;
+  opacity: 0.6;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 14. SECTIONS (shared)
+// ─────────────────────────────────────────────────────
+
+.section {
+  padding: 6rem $pad-x;
+
+  &-inner {
+    max-width: $max-w;
+    margin: 0 auto;
+  }
+
+  &-header {
+    margin-bottom: 3.5rem;
+  }
+
+  &-eyebrow {
+    color: $yellow;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  &-title {
+    font-family: $font-display;
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    padding-bottom: 1rem;
+  }
+
+  &-sub {
+    color: $text-muted;
+    margin-top: 0.75rem;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 15. PHILOSOPHIE
+// ─────────────────────────────────────────────────────
+
+.philosophie {
+  &-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  &-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: $text-secondary;
+    margin-bottom: 1.25rem;
+  }
+
+  &-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    @include dashed-border($text-muted);
+    border-radius: $r-card;
+    overflow: hidden;
+  }
+}
+
+.stat-card {
+  padding: 1.5rem;
+  @include dashed-border($text-muted, right);
+  @include dashed-border($text-muted, bottom);
+
+  &:nth-child(even)      { border-right: none; }
+  &:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+.stat-num {
+  display: block;
+  font-family: $font-display;
+  font-size: 2.8rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  color: $yellow;
+}
+
+.stat-label {
+  display: block;
+  color: $text-muted;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 16. CARTE
+// ─────────────────────────────────────────────────────
+
+.carte {
+  background: $pure-white;
+
+  &-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+    border-bottom: 1px dashed $text-muted;
+    overflow-x: auto;
+  }
+
+  .mono{
+    color: $accent;
+  }
+  .section-title{
+    color: $primary
+  }
+
+  &-tab {
+    @include mono-label(0.72rem, 0.12em);
+    color: $primary;
+    padding: 0.75em 1.5em;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary;
+      box-shadow: 0 14px 50px rgb(191 191 191 / 45%);
+    }
+
+    &.active {
+      color: $accent;
+      border-bottom-color: $accent;
+    }
+  }
+
+  &-panel {
+    display: none;
+    padding: 2rem 0;
+    animation: fadeIn 0.3s ease;
+
+    &.active {
+      display: block;
+    }
+
+  }
+
+  &-note {
+    color: $primary;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed $text-muted;
+  }
+}
+
+// Plat items
+.plat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.plat-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px dashed $text-muted;
+  position: relative;
+  transition: background 0.2s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .plat-badge{
+    color: $pure-white;
+  }
+
+  &:hover {
+    background: $primary;
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .plat-name{
+      color: $pure-white;
+    }
+
+    .mono{
+      color: $pure-white;
+    }
+
+    .plat-prix{
+      color: $pure-white;
+    }
+  }
+
+}
+
+.plat-name {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.3rem;
+  color: $primary;
+}
+
+.plat-desc {
+  font-size: 0.72rem;
+}
+
+.plat-prix {
+  font-family: $font-mono;
+  font-size: 0.9rem;
+  color: $accent;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.plat-badge {
+  position: absolute;
+  top: 1rem;
+  right: 5rem;
+  background: $accent;
+  color: $pure-white;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  padding: 2px 8px;
+  border-radius: 1em;
+  text-transform: uppercase;
+}
+
+// Menus grid
+.menus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.menu-card {
+  @include dashed-border($text-muted);
+  border-radius: $r-card;
+  padding: 2rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: $accent;
+    box-shadow: 0 0 20px rgba(220, 80, 0, 0.1);
+  }
+
+  &--featured {
+    border-color: $accent;
+    background: rgba(220, 80, 0, 0.05);
+    box-shadow: 0 0 30px rgba(220, 80, 0, 0.1);
+  }
+
+  &-header {
+    // grouping element only
+  }
+}
+
+.menu-tag {
+  color: $text-muted;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.menu-name {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  color: $primary;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.menu-prix {
+  font-family: $font-display;
+  font-size: 2rem;
+  font-weight: 300;
+  display: block;
+  margin-bottom: 1.5rem;
+  color: $primary;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  li {
+    color: $primary;
+    font-size: 0.78rem;
+    padding: 0.3em 0;
+    border-bottom: 1px dashed rgba(255, 237, 215, 0.1);
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 17. VINS
+// ─────────────────────────────────────────────────────
+
+.vins {
+  &-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  &-body {
+    color: $text-secondary;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: $text-muted;
+    @include dashed-border($text-muted);
+    border-radius: $r-card;
+    overflow: hidden;
+  }
+
+  &-featured-list {
+    max-width: $max-w;
+  }
+}
+
+.vin-region-card {
+  background: $primary;
+  padding: 1.5rem;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba($yellow, 0.1);
+  }
+}
+
+.vin-region-badge {
+  display: inline-block;
+  background: $yellow;
+  color: $primary;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  padding: 2px 7px;
+  border-radius: 1em;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+
+.vin-region {
+  font-family: $font-display;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.3rem;
+}
+
+.vin-count {
+  color: $text-muted;
+}
+
+.vin-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px dashed rgba(255, 237, 215, 0.08);
+  transition: padding 0.2s;
+
+  &:hover {
+    padding-left: 1rem;
+  }
+}
+
+.vin-name {
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 0.2rem;
+}
+
+.vin-info {
+  color: $text-muted;
+  font-size: 0.7rem;
+  display: block;
+}
+
+.vin-prix {
+  font-family: $font-mono;
+  color: $yellow;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 18. TEMOIGNAGES
+// ─────────────────────────────────────────────────────
+
+$temoignage-cols: 200px 1fr 100px 100px;
+
+.temoignages {
+  background: $pure-white;
+
+  .section-title{
+    color: $primary;
+  }
+
+  .section-eyebrow{
+    color: $accent;
+  }
+
+  &-table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    color: $text-muted;
+    font-size: 0.72rem;
+    padding-top: 1rem;
+    border-top: 1px dashed $text-muted;
+  }
+}
+
+.temoignage-header {
+  display: grid;
+  grid-template-columns: $temoignage-cols;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed $accent;
+  color: $primary;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.temoignage-row {
+  display: grid;
+  grid-template-columns: $temoignage-cols;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px dashed rgba(255, 237, 215, 0.08);
+  align-items: center;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba($accent, 0.1);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0 -1rem;
+    border-radius: $r-card;
+  }
+}
+
+.temoignage-client {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+
+  span {
+    display: block;
+    font-size: 0.65rem;
+  }
+
+  .color{
+    color: $primary;
+  }
+}
+
+.temoignage-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  @include dashed-border($text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $pure-white;
+  flex-shrink: 0;
+}
+
+.temoignage-name{
+  color: $primary;
+}
+
+.temoignage-text {
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: $primary;
+}
+
+.stars {
+  color: $accent;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+.date{
+  color: $primary;
+}
+
+.temoignages-meta{
+    color: $primary;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 19. INFOS PRATIQUES
+// ─────────────────────────────────────────────────────
+
+.infos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.info-block {
+  @include dashed-border($text-muted, left);
+  padding-left: 1.5rem;
+}
+
+.info-title {
+  color: $yellow;
+  @include mono-label(0.65rem, 0.18em);
+  margin-bottom: 1rem;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    font-size: 0.78rem;
+    padding: 0.35rem 0;
+    font-family: $font-mono;
+
+    &:first-child {
+      color: $text-muted;
+      padding-right: 1rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+.info-address p {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: $text-secondary;
+}
+
+.info-contact {
+  margin-bottom: 0.4rem;
+
+  a {
+    font-size: 0.88rem;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+.info-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  color: $text-muted;
+  font-size: 0.72rem;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+.info-list li {
+  font-size: 0.78rem;
+  color: $text-secondary;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed rgba(255, 237, 215, 0.07);
+}
+
+
+// ─────────────────────────────────────────────────────
+// 20. RESERVATION
+// ─────────────────────────────────────────────────────
+
+.reservation-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
+
+  .section-eyebrow{
+    color: $accent;
+  }
+}
+
+.reservation-body {
+  color: $text-secondary;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  &--full {
+    grid-column: span 2;
+  }
+}
+
+.form-label {
+  @include mono-label(0.65rem, 0.15em);
+  color: $text-muted;
+}
+
+.form-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed $text-primary;
+  color: $text-primary;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  padding: 0.6em 0;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  -webkit-appearance: none;
+
+  &::placeholder {
+    color: $text-muted;
+  }
+
+  &:focus {
+    border-color: $accent;
+  }
+}
+
+.form-select {
+  cursor: none;
+
+  option {
+    background: $surface;
+    color: $text-primary;
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  @include dashed-border($text-primary);
+  padding: 0.6em;
+  border-radius: $r-card;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 0.5rem;
+}
+
+.form-message {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  min-height: 1.5em;
+  padding: 0.5em 0;
+  transition: color 0.3s;
+
+  &.success { color: $success; }
+  &.error   { color: $accent; }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 21. FOOTER
+// ─────────────────────────────────────────────────────
+
+.site-footer {
+  background: $primary;
+  padding: 4rem $pad-x 2rem;
+  border-top: 1px dashed $text-muted;
+}
+
+.footer-inner {
+  max-width: $max-w;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px dashed $text-muted;
+}
+
+.footer-brand {
+  // grouping only
+}
+
+.footer-logo {
+  font-family: $font-display;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+  color: $text-secondary;
+  font-size: 0.75rem;
+  margin-bottom: 0.3rem;
+}
+
+.footer-coords {
+  color: $text-muted;
+  font-size: 0.65rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-col {
+  &-title {
+    color: $yellow;
+    @include mono-label(0.65rem, 0.18em);
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  a {
+    font-size: 0.85rem;
+    color: $text-secondary;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+}
+
+.footer-bottom {
+  max-width: $max-w;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  color: $text-muted;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+}
+
+
+// ─────────────────────────────────────────────────────
+// 22. ANIMATIONS
+// ─────────────────────────────────────────────────────
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes rotateSlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleY(0.7);
+    transform-origin: top;
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 23. SCROLL REVEAL
+// ─────────────────────────────────────────────────────
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+// ─────────────────────────────────────────────────────
+// 24. RESPONSIVE
+// ─────────────────────────────────────────────────────
+
+@include lg {
+  .infos-grid         { grid-template-columns: 1fr 1fr; }
+  .menus-grid         { grid-template-columns: 1fr 1fr; }
+
+  .temoignage-header,
+  .temoignage-row     { grid-template-columns: 160px 1fr 80px; }
+
+  .temoignage-row > *:last-child,
+  .temoignage-header > *:last-child { display: none; }
+}
+
+@include md {
+  :root { --pad-x: 5vw; }
+
+  .nav-links,
+  .nav-cta           { display: none; }
+  .nav-hamburger     { display: flex; }
+
+  .hero              { padding: 7rem $pad-x 5rem; }
+  .hero-decoration   { display: none; }
+
+  .philosophie-grid  { grid-template-columns: 1fr; gap: 2.5rem; }
+  .philosophie-stats { grid-template-columns: 1fr 1fr; }
+
+  .vins-layout       { grid-template-columns: 1fr; gap: 2rem; }
+
+  .temoignage-header { display: none; }
+  .temoignage-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+  }
+
+  .infos-grid           { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  .reservation-layout   { grid-template-columns: 1fr; gap: 2.5rem; }
+  .form-row             { grid-template-columns: 1fr; }
+  .form-group--full     { grid-column: span 1; }
+
+  .menus-grid           { grid-template-columns: 1fr; }
+
+  .footer-inner         { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-links         { gap: 2rem; }
+
+  .scroll-indicator     { display: none; }
+}
+
+@include sm {
+  .infos-grid    { grid-template-columns: 1fr; }
+  .hero-actions  { flex-direction: column; align-items: flex-start; }
+  .ticker-band   { display: none; }
+}

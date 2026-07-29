@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entre Deux Verres — Restaurant à Poussan</title>
+  <meta name="description" content="Entre Deux Verres — Restaurant gastronomique à Poussan (34560). Cuisine du terroir, vins naturels, ambiance chaleureuse." />
+  <meta property="og:title" content="Entre Deux Verres — Poussan" />
+  <meta property="og:description" content="Restaurant gastronomique au cœur de Poussan, Hérault." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Literata:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══ CURSOR ══ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ══ SCROLL INDICATOR ══ -->
+  <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
+    <span class="scroll-label" id="scrollLabel">ACCUEIL</span>
+    <div class="scroll-progress">
+      <div class="scroll-progress-bar" id="scrollBar"></div>
+    </div>
+  </div>
+
+  <!-- ══ NAV ══ -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="nav-logo-text">Entre Deux Verres</span>
+        <span class="nav-logo-sub mono">Poussan · 34560</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#philosophie" class="nav-link"><span>Philosophie</span></a></li>
+        <li><a href="#carte" class="nav-link"><span>La Carte</span></a></li>
+        <li><a href="#vins" class="nav-link"><span>Les Vins</span></a></li>
+        <li><a href="#temoignages" class="nav-link"><span>Avis</span></a></li>
+        <li><a href="#contact" class="nav-link"><span>Contact</span></a></li>
+      </ul>
+      <a href="#reservation" class="btn btn-primary nav-cta ">
+        <span>Réserver</span>
+      </a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="nav-mobile" id="navMobile">
+      <ul>
+        <li><a href="#philosophie" class="nav-mobile-link">Philosophie</a></li>
+        <li><a href="#carte" class="nav-mobile-link">La Carte</a></li>
+        <li><a href="#vins" class="nav-mobile-link">Les Vins</a></li>
+        <li><a href="#temoignages" class="nav-mobile-link">Avis</a></li>
+        <li><a href="#contact" class="nav-mobile-link">Contact</a></li>
+        <li><a href="#reservation" class="nav-mobile-link">→ Réserver</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="hero" data-section="ACCUEIL">
+    <div class="hero-bg-grid" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow mono">Ouvert du Mardi au Dimanche</p>
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title">
+          <span class="hero-title-line" id="word-entre">Entre</span>
+          <span class="hero-title-line hero-title-line--trigger" id="word-deux">Deux</span>
+          <span class="hero-title-line" id="word-verres">Verres</span>
+        </h1>
+      
+        <div class="hero-images" id="heroImages">
+          <img class="hero-img hero-img--left"  src="images/vin-rouge.png" alt="Entre" />
+          <img class="hero-img hero-img--right" src="images/vin-blanc.png" alt="Verres" />
+        </div>
+      </div>
+      <p class="hero-tagline">Une cuisine vivante, des vins qui parlent,<br>une table où il fait bon s'attarder.</p>
+      <div class="hero-actions">
+        <a href="#reservation" class="btn btn-primary"><span>Réserver une table</span></a>
+        <a href="#carte" class="btn btn-ghost"><span>Voir la carte</span></a>
+      </div>
+      <div class="hero-meta mono">
+        <span class="hero-meta-item">3 Rue Jean Fabre, 34560 Poussan</span>
+        <span class="hero-meta-sep">—</span>
+        <span class="hero-meta-item">Capacité : 38 couverts</span>
+      </div>
+    </div>
+    <div class="hero-decoration" aria-hidden="true">
+      <div class="hero-circle"></div>
+      <div class="hero-circle hero-circle--2"></div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="mono">SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══ BANNER TICKER ══ -->
+  <div class="ticker-band" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Cuisine du terroir méditerranéen</span>
+      <span class="ticker-dot">◆</span>
+      <span>Vins naturels & biodynamiques</span>
+      <span class="ticker-dot">◆</span>
+      <span>Produits locaux & de saison</span>
+      <span class="ticker-dot">◆</span>
+      <span>Fait maison chaque matin</span>
+      <span class="ticker-dot">◆</span>
+      <span>Ouvert midi & soir</span>
+      <span class="ticker-dot">◆</span>
+      <span>Cuisine du terroir méditerranéen</span>
+      <span class="ticker-dot">◆</span>
+      <span>Vins naturels & biodynamiques</span>
+      <span class="ticker-dot">◆</span>
+      <span>Produits locaux & de saison</span>
+      <span class="ticker-dot">◆</span>
+      <span>Fait maison chaque matin</span>
+      <span class="ticker-dot">◆</span>
+      <span>Ouvert midi & soir</span>
+      <span class="ticker-dot">◆</span>
+    </div>
+  </div>
+
+  <!-- ══ PHILOSOPHIE ══ -->
+  <section class="section philosophie" id="philosophie" data-section="PHILOSOPHIE">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow mono">001 — Notre Philosophie</p>
+        <h2 class="section-title">Une table<br><em>entre deux</em><br>mondes</h2>
+      </div>
+      <div class="philosophie-grid">
+        <div class="philosophie-text">
+          <p class="philosophie-body">Nous croyons que manger est un acte politique, sensuel et poétique. Ici, rien n'est figé : la carte change au gré des saisons, des arrivages, de l'humeur du chef. Ce qui demeure constant, c'est l'exigence du goût et la générosité de l'accueil.</p>
+          <p class="philosophie-body">Poussan est notre terroir. Ses vignobles, ses maraîchers, ses éleveurs. ils sont la matière première de chaque assiette. Nous sommes un restaurant de village avec l'ambition d'une grande table.</p>
+          <a href="#carte" class="btn btn-ghost mt-md"><span>Découvrir la carte</span></a>
+        </div>
+        <div class="philosophie-stats">
+          <div class="stat-card">
+            <span class="stat-num">12</span>
+            <span class="stat-label mono">producteurs locaux</span>
+            <div class="dashline dashline--h"></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">100%</span>
+            <span class="stat-label mono">fait maison</span>
+            <div class="dashline dashline--h"></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">38</span>
+            <span class="stat-label mono">couverts max</span>
+            <div class="dashline dashline--h"></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">~60</span>
+            <span class="stat-label mono">références de vin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CARTE ══ -->
+  <section class="section carte" id="carte" data-section="LA CARTE">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow mono">002 — La Carte</p>
+        <h2 class="section-title">Ce que<br>nous cuisinons</h2>
+        <p class="section-sub mono">Carte mise à jour le <span id="carteDate">—</span></p>
+      </div>
+
+      <div class="carte-tabs" role="tablist">
+        <button class="carte-tab active" data-tab="entrees" role="tab">Entrées</button>
+        <button class="carte-tab" data-tab="plats" role="tab">Plats</button>
+        <button class="carte-tab" data-tab="desserts" role="tab">Desserts</button>
+        <button class="carte-tab" data-tab="menus" role="tab">Menus</button>
+      </div>
+
+      <div class="carte-panel active" id="tab-entrees">
+        <div class="plat-list">
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Burrata de Montpellier, tomates confites & basilic</h4>
+              <p class="plat-desc mono">Huile d'olive du moulin de Beaulieu · fleur de sel de Camargue</p>
+            </div>
+            <span class="plat-prix">14 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Carpaccio de poulpe grillé, agrumes & câpres</h4>
+              <p class="plat-desc mono">Poulpe de Sète · citron de Menton · câpres de Pantelleria</p>
+            </div>
+            <span class="plat-prix">16 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Velouté de courgettes au chèvre frais & coriandre</h4>
+              <p class="plat-desc mono">Chèvre de la ferme des Oliviers · courgettes du jardin</p>
+            </div>
+            <span class="plat-prix">11 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Assiette de charcuteries de l'Hérault</h4>
+              <p class="plat-desc mono">Saucisson sec, coppa, bresaola · cornichons maison</p>
+            </div>
+            <span class="plat-prix">13 €</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carte-panel" id="tab-plats">
+        <div class="plat-list">
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Daurade royale rôtie, fenouil confit & vierge d'agrumes</h4>
+              <p class="plat-desc mono">Pêche locale · fenouil de Frontignan · huile d'olive vierge extra</p>
+            </div>
+            <span class="plat-prix">28 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Agneau de l'Aveyron, jus au romarin & gratin dauphinois</h4>
+              <p class="plat-desc mono">Agneau élevé en plein air · romarin de Garrigue · pommes de terre Sarladaises</p>
+            </div>
+            <span class="plat-prix">32 €</span>
+          </div>
+          <div class="plat-item ">
+            <div class="plat-badge mono">Signature</div>
+            <div class="plat-info">
+              <h4 class="plat-name">Risotto à l'encre de seiche, gambas poêlées & aïoli maison</h4>
+              <p class="plat-desc mono">Gambas de Sète · riz Carnaroli · encre de seiche · aïoli provençal</p>
+            </div>
+            <span class="plat-prix">26 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Suprême de volaille fermière, jus au thym & légumes du moment</h4>
+              <p class="plat-desc mono">Volaille Label Rouge · légumes de saison · jus corsé maison</p>
+            </div>
+            <span class="plat-prix">24 €</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carte-panel" id="tab-desserts">
+        <div class="plat-list">
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Crème catalane brûlée à la vanille bourbon</h4>
+              <p class="plat-desc mono">Tradition revisitée · cassonade caramélisée à la minute</p>
+            </div>
+            <span class="plat-prix">8 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Moelleux au chocolat Valrhona, glace vanille</h4>
+              <p class="plat-desc mono">Chocolat noir 70% Guanaja · glace turbinée sur place</p>
+            </div>
+            <span class="plat-prix">9 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Tarte fine aux figues rôties & crème d'amande</h4>
+              <p class="plat-desc mono">Figues du jardin · crème d'amande · pâte feuilletée maison</p>
+            </div>
+            <span class="plat-prix">9 €</span>
+          </div>
+          <div class="plat-item">
+            <div class="plat-info">
+              <h4 class="plat-name">Assiette de fromages affinés de la région</h4>
+              <p class="plat-desc mono">Sélection de 3 fromages · confiture maison · pain de campagne</p>
+            </div>
+            <span class="plat-prix">12 €</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="carte-panel" id="tab-menus">
+        <div class="menus-grid">
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <span class="mono menu-tag">Midi — Semaine</span>
+              <h3 class="menu-name">Le Déjeuner</h3>
+              <span class="menu-prix">22 €</span>
+            </div>
+            <ul class="menu-items mono">
+              <li>Entrée du jour</li>
+              <li>Plat du jour</li>
+              <li>Café offert</li>
+            </ul>
+          </div>
+          <div class="menu-card menu-card--featured">
+            <div class="menu-card-header">
+              <span class="mono menu-tag">Midi & Soir</span>
+              <h3 class="menu-name">Le Terroir</h3>
+              <span class="menu-prix">38 €</span>
+            </div>
+            <ul class="menu-items mono">
+              <li>Entrée au choix</li>
+              <li>Plat au choix</li>
+              <li>Dessert au choix</li>
+              <li>Verre de vin inclus</li>
+            </ul>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <span class="mono menu-tag">Soir uniquement</span>
+              <h3 class="menu-name">La Dégustation</h3>
+              <span class="menu-prix">62 €</span>
+            </div>
+            <ul class="menu-items mono">
+              <li>4 services</li>
+              <li>Accord mets & vins</li>
+              <li>Café & mignardises</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="carte-note mono">Allergènes disponibles sur demande · Menu enfant sur demande · Prix nets, service compris</p>
+    </div>
+  </section>
+
+  <!-- ══ VINS ══ -->
+  <section class="section vins" id="vins" data-section="LES VINS">
+    <div class="section-inner">
+      <div class="vins-layout">
+        <div class="vins-text">
+          <p class="section-eyebrow mono">003 — La Cave</p>
+          <h2 class="section-title">Une cave<br>vivante &<br><em>engagée</em></h2>
+          <p class="vins-body">Notre sélection privilégie les vins naturels, biodynamiques et issus de l'agriculture raisonnée. Languedoc-Roussillon en tête, mais aussi quelques voyages en Bourgogne, Loire et Jura.</p>
+          <p class="vins-body">Le sommelier est présent chaque soir pour vous guider. Aucune question n'est stupide. Le vin doit être un plaisir, pas une intimidation.</p>
+        </div>
+        <div class="vins-grid">
+          <div class="vin-region-card">
+            <span class="vin-region-badge mono">AOC</span>
+            <h4 class="vin-region">Languedoc-Roussillon</h4>
+            <p class="vin-count mono">28 références</p>
+          </div>
+          <div class="vin-region-card">
+            <span class="vin-region-badge mono">AOC</span>
+            <h4 class="vin-region">Bourgogne</h4>
+            <p class="vin-count mono">9 références</p>
+          </div>
+          <div class="vin-region-card">
+            <span class="vin-region-badge mono">AOC</span>
+            <h4 class="vin-region">Loire & Jura</h4>
+            <p class="vin-count mono">12 références</p>
+          </div>
+          <div class="vin-region-card">
+            <span class="vin-region-badge mono">Autres</span>
+            <h4 class="vin-region">Découvertes</h4>
+            <p class="vin-count mono">11 références</p>
+          </div>
+        </div>
+      </div>
+      <div class="vins-featured-list">
+        <div class="dashline dashline--h mb-md"></div>
+        <p class="mono">Sélection du moment ↓</p>
+        <div class="vin-item">
+          <div><h5 class="vin-name">Picpoul de Pinet, Domaine Gaujal</h5><span class="mono vin-info">Blanc · Picpoul · Poussan, Hérault · 2023</span></div>
+          <span class="vin-prix">28 €</span>
+        </div>
+        <div class="vin-item">
+          <div><h5 class="vin-name">Terrasses du Larzac, Domaine de l'Hortus</h5><span class="mono vin-info">Rouge · Grenache-Syrah · 2021</span></div>
+          <span class="vin-prix">34 €</span>
+        </div>
+        <div class="vin-item">
+          <div><h5 class="vin-name">Côteaux du Layon, Domaine des Baumard</h5><span class="mono vin-info">Blanc moelleux · Chenin · Loire · 2020</span></div>
+          <span class="vin-prix">42 €</span>
+        </div>
+        <div class="vin-item">
+          <div><h5 class="vin-name">Vin de France, Maison Gramenon</h5><span class="mono vin-info">Biodynamique · Grenache · Rhône · 2022</span></div>
+          <span class="vin-prix">38 €</span>
+        </div>
+        <div class="dashline dashline--h mt-md"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TEMOIGNAGES ══ -->
+  <section class="section temoignages" id="temoignages" data-section="AVIS">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow mono">004 — Ce qu'ils disent</p>
+        <h2 class="section-title">La table<br>a la parole</h2>
+      </div>
+      <div class="temoignages-table">
+        <div class="temoignage-header mono">
+          <span>Client</span>
+          <span>Avis</span>
+          <span>Note</span>
+          <span>Date</span>
+        </div>
+        <div class="temoignage-row">
+          <div class="temoignage-client">
+            <div class="temoignage-avatar" style="background:var(--accent)">F</div>
+            <div class="temoignage-name"><strong>Frédéric H.</strong></div>
+          </div>
+          <p class="temoignage-text">"Antre Deux Verres est une vraie adresse de passionnés, rare et sincère.
+            Le patron/chef est avant tout un amoureux du vin, et ça se sent immédiatement : il est généreux, très communicatif, et surtout doté d’une connaissance profonde des bouteilles qu’il propose. La carte est clairement pensée pour les amateurs pointus et curieux, avec de superbes références qu’on ne croise pas partout : Jura (Overnoy, Savagnin), Loire de grande classe (Domaine du Collier), Bourgogne de caractère (Derain), Champagne hors normes, Sicile de vignerons engagés… bref, une sélection exigeante, cohérente, assumée.
+            <br>
+            Mais — et c’est important — il y en a pour tout le monde. Même si on n’est pas “geek du vin”, on trouve de très bons vins au verre, accessibles et bien choisis. On peut venir ici sans être expert et se faire plaisir, ou au contraire pousser la discussion très loin si on aime ça. Le lieu ne juge pas, il partage.
+            <br>
+            Côté cuisine, on est sur une brasserie gourmande, bien faite, avec peu de plats mais du fait maison, pensé pour accompagner le vin. En entrée, un superbe risotto de morilles avec œuf poché, réconfortant et précis.
+            Sur la grande planche à partager : trois viandes parfaitement maîtrisées — un porc mariné absolument magistral, une côte de bœuf servie bleue comme il faut, et un agneau cuit longuement, fondant et plein de goût. Simple en apparence, mais exécuté avec beaucoup de justesse.
+            <br>
+            Le restaurant est un peu à l’écart des grandes villes, mais le détour en vaut largement la peine. Le village a beaucoup de charme et l’étape est idéale, d’autant plus que ce n’est pas loin de la lagune de Thau. Une vraie bonne idée de pause gastronomique et vinique dans la région.
+            <br>
+            Une adresse conviviale, authentique, sans posture, où l’on vient pour boire (très) bien, manger bon, et échanger.
+            À recommander sans hésiter — que l’on soit amateur averti ou simplement curieux."</p>
+          <div class="stars" aria-label="5 étoiles">★★★★★</div>
+          <div class="date" ><span class="mono">Janvier 2026</span></div>
+        </div>
+        <div class="temoignage-row">
+          <div class="temoignage-client">
+            <div class="temoignage-avatar color" style="background:var(--yellow)">L</div>
+            <div class="temoignage-name"><strong>Laure R.</strong></div>
+          </div>
+          <p class="temoignage-text">"Un petit lieu unique avec un super service et des plats de qualité.
+            Comme toujours, Antoine nous a régalé avec sa planche Côte de Bœuf Maturée et ses accompagnements. Ainsi que ses conseils viticoles adaptés au gout de chacun et qui accompagne au mieux ce plat."</p>
+          <div class="stars" aria-label="5 étoiles">★★★★★</div>
+          <div class="date" ><span class="mono">Fév 2026</span></div>
+        </div>
+        <div class="temoignage-row">
+          <div class="temoignage-client">
+            <div class="temoignage-avatar" style="background:var(--accent)">C</div>
+            <div class="temoignage-name"><strong>Cléa R.</strong></div>
+          </div>
+          <p class="temoignage-text">"Nous sommes fidèles depuis l'ouverture. <br>
+          Toujours un plaisir et un régal.<br>
+          Je recommande à 100% .<br>
+          Du bon vin et des cocktails très bon également.<br>
+          Un accueil parfait.👍 🍷🍸"</p>
+          <div class="stars" aria-label="5 étoiles">★★★★★</div>
+          <div class="date" ><span class="mono">Oct 2025</span></div>
+        </div>
+        <div class="temoignage-row">
+          <div class="temoignage-client">
+            <div class="temoignage-avatar color" style="background:var(--yellow)">K</div>
+            <div class="temoignage-name"><strong>Kiliam C.</strong></div>
+          </div>
+          <p class="temoignage-text">"Nous avons réservé ce restaurant un peu par hasard, avec l’envie de manger des tapas. Et quelle belle surprise !
+          <br>
+            Un accueil chaleureux, une petite carte mais avec du choix. Les planches de charcuterie et de fromage sont excellentes et bien garnies. Le pain servi avec les tapas est super bon et, sans trop prendre de risques, il doit venir d’une boulangerie artisanale.
+            <br> 
+            Et je ne peux pas terminer cet avis sans parler de la brioche façon pain perdu, qui était tout simplement succulente.
+            <br>
+            Désormais, à Poussan, nous avons notre adresse : dès que nous serons dans le coin, nous y retournerons.
+            <br>
+            Encore merci pour le service."</p>
+          <div class="stars" aria-label="5 étoiles">★★★★★</div>
+          <div class="date" ><span class="mono">Janv 2026</span></div>
+        </div>
+      </div>
+      <div class="temoignages-meta mono">
+        <span>Note moyenne : <strong class="accent-text">4.9 / 5</strong></span>
+        <span>·</span>
+        <span>Basé sur 195 avis Google</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INFOS PRATIQUES ══ -->
+  <section class="section infos" id="infos" data-section="INFOS">
+    <div class="section-inner">
+      <p class="section-eyebrow mono">05 — Infos Pratiques</p>
+      <div class="infos-grid">
+        <div class="info-block">
+          <h4 class="info-title mono">Horaires</h4>
+          <table class="info-table mono">
+            <tr><td>Lundi</td><td class="text-muted">Fermé</td></tr>
+            <tr><td>Mar — Ven</td><td>12h–14h / 19h–22h</td></tr>
+            <tr><td>Samedi</td><td>12h–14h30 / 19h–22h30</td></tr>
+            <tr><td>Dimanche</td><td>12h–14h30</td></tr>
+          </table>
+        </div>
+        <div class="info-block">
+          <h4 class="info-title mono">Adresse</h4>
+          <address class="info-address">
+            <p>3 Rue Jean Fabre</p>
+            <p>34560 Poussan</p>
+            <p>Hérault, Occitanie</p>
+          </address>
+          <a href="https://maps.google.com/?q=Poussan+34560" target="_blank" rel="noopener" class="btn btn-ghost btn-sm mt-sm ">
+            <span>Voir sur la carte</span>
+          </a>
+        </div>
+        <div class="info-block">
+          <h4 class="info-title mono">Contact</h4>
+          <p class="info-contact"><a href="tel:+33467182345">+33 (0)4 67 18 23 45</a></p>
+          <p class="info-contact"><a href="mailto:contact@entredeuxverres.fr">contact@entredeuxverres.fr</a></p>
+          <div class="info-socials">
+            <a href="#" class="social-link mono">Instagram →</a>
+            <a href="#" class="social-link mono">Facebook →</a>
+          </div>
+        </div>
+        <div class="info-block">
+          <h4 class="info-title mono">Accès</h4>
+          <ul class="info-list mono">
+            <li>Parking gratuit à 200m</li>
+            <li>Accessible PMR</li>
+            <li>Terrasse en été</li>
+            <li>Animaux de compagnie bienvenus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RESERVATION ══ -->
+  <section class="section reservation" id="reservation" data-section="RÉSERVER">
+    <div class="section-inner">
+      <div class="reservation-layout">
+        <div class="reservation-text">
+          <p class="section-eyebrow mono">006 — Réservation</p>
+          <h2 class="section-title">Réservez<br>votre table</h2>
+          <p class="reservation-body">Pour les groupes de plus de 6 personnes, merci de nous appeler directement. Pour les événements privés (anniversaires, repas d'affaires), contactez-nous par e-mail.</p>
+          <p class="reservation-body mono">Annulation gratuite jusqu'à 24h avant.</p>
+        </div>
+        <form class="reservation-form" id="reservationForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom" class="form-label mono">Nom complet</label>
+              <input type="text" id="nom" name="nom" class="form-input" placeholder="Jean Dupont" required />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label mono">Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="jean@exemple.fr" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telephone" class="form-label mono">Téléphone</label>
+              <input type="tel" id="telephone" name="telephone" class="form-input" placeholder="+33 6 00 00 00 00" />
+            </div>
+            <div class="form-group">
+              <label for="couverts" class="form-label mono">Nombre de couverts</label>
+              <select id="couverts" name="couverts" class="form-input form-select">
+                <option value="1">1 personne</option>
+                <option value="2" selected>2 personnes</option>
+                <option value="3">3 personnes</option>
+                <option value="4">4 personnes</option>
+                <option value="5">5 personnes</option>
+                <option value="6">6 personnes</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date" class="form-label mono">Date</label>
+              <input type="date" id="date" name="date" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="service" class="form-label mono">Service</label>
+              <select id="service" name="service" class="form-input form-select">
+                <option value="midi">Midi (12h–14h)</option>
+                <option value="soir">Soir (19h–22h)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group form-group--full">
+            <label for="message" class="form-label mono">Message (allergies, occasion...)</label>
+            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Indiquez ici toute information utile..." rows="3"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              <span>Confirmer la réservation</span>
+            </button>
+          </div>
+          <div class="form-message" id="formMessage" role="alert" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">Entre Deux Verres</p>
+        <p class="footer-tagline mono">Une cuisine vivante à Poussan, Hérault.</p>
+        <p class="footer-coords mono">3 Rue Jean Fabre, 34560 Poussan</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5 class="footer-col-title mono">Navigation</h5>
+          <ul>
+            <li><a href="#philosophie">Philosophie</a></li>
+            <li><a href="#carte">La Carte</a></li>
+            <li><a href="#vins">Les Vins</a></li>
+            <li><a href="#temoignages">Avis</a></li>
+            <li><a href="#reservation">Réserver</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 class="footer-col-title mono">Contact</h5>
+          <ul>
+            <li><a href="tel:+33467182345">04 67 18 23 45</a></li>
+            <li><a href="mailto:contact@entredeuxverres.fr">contact@entredeuxverres.fr</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom mono">
+      <span>© 2025 Entre Deux Verres — Poussan</span>
+      <span>Tous droits réservés</span>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
