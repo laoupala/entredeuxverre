@@ -1425,12 +1425,22 @@ body:has(button:hover) .cursor {
   :root {
     --pad-x: 5vw;
   }
+  .hero-title {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.05em;
+    line-height: 0.95;
+  }
   .nav-links,
   .nav-cta {
     display: none;
   }
   .nav-hamburger {
     display: flex;
+  }
+  .site-header:has(.nav-mobile.open) {
+    background: rgba(31, 31, 31, 0.96);
+    backdrop-filter: blur(12px);
   }
   .hero {
     padding: 7rem 3.125vw 5rem;
@@ -1473,6 +1483,9 @@ body:has(button:hover) .cursor {
   }
   .menus-grid {
     grid-template-columns: 1fr;
+  }
+  .hero-actions {
+    align-items: center;
   }
   .footer-inner {
     grid-template-columns: 1fr;
